@@ -66,3 +66,52 @@ print('ROC-AUC Score:', roc_auc)
 recall = recall_score(y_test,predictions)
 print('Recall:', recall)
 
+from sklearn.metrics import mutual_info_score
+from sklearn.metrics import adjusted_rand_score
+from sklearn.metrics import adjusted_rand_score
+mi = mutual_info_score(y_test, predictions)
+
+print('Mutual Information:', mi)
+ri = adjusted_rand_score(y_test,predictions)
+
+print('Rand Index:', ri)
+ari = adjusted_rand_score(y_test,predictions)
+print('Adjusted Rand Index:', ari)
+
+from sklearn.datasets import make_blobs
+
+from sklearn.cluster import KMeans
+from sklearn.metrics import silhouette_score
+import matplotlib.pyplot as plt
+
+
+X, y = make_blobs(
+    n_samples=500,
+    n_features=2,
+    centers=4,
+    cluster_std=1,
+    center_box=(-10.0, 10.0),
+    shuffle=True,
+    random_state=1,
+)
+
+
+for n_clusters in range(2, 6):
+    kmeans = KMeans(n_clusters=3, random_state=0)
+    cluster_labels = kmeans.fit_predict(X)
+    silhouette_avg = silhouette_score(X, cluster_labels)
+
+    print(f"For n_clusters = {n_clusters}, the average silhouette_score is : {silhouette_avg}")
+
+  
+    plt.scatter(X[:, 0], X[:, 1], c=cluster_labels, cmap='viridis')
+    plt.title(f'KMeans Clustering (n_clusters={n_clusters})')
+    plt.show()
+
+from sklearn.metrics import davies_bouldin_score
+kmeans = KMeans(n_clusters=3, random_state=0)
+cluster_labels = kmeans.fit_predict(X)
+
+
+db_index = davies_bouldin_score(X, cluster_labels)
+print('Davies-Bouldin Index:', db_index)
