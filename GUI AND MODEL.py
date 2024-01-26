@@ -54,7 +54,6 @@ mintempent=Entry(frame1,width=10,bg='white',
                fg='gray',font=('Arial',12),
                  borderwidth=1)
 mintempent.grid(row=0,column=3)
-
 maxtemplb = Label(frame1,text="Maximum Temperature",bg='lightblue',
                fg='black',font=('Arial',12),padx=5)
 maxtemplb.grid(row=0,column=4)
